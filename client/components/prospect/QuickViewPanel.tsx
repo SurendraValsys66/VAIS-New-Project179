@@ -13,6 +13,7 @@ import {
   DollarSign,
   Globe,
   ChevronDown,
+  Twitter,
 } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -159,9 +160,22 @@ export const QuickViewPanel: React.FC<QuickViewPanelProps> = ({
               </AvatarFallback>
             </Avatar>
             <div className="flex-1 min-w-0">
-              <h3 className="font-semibold text-gray-900 text-sm">
-                {prospect.fullName}
-              </h3>
+              <div className="flex items-center gap-2">
+                <h3 className="font-semibold text-gray-900 text-sm">
+                  {prospect.fullName}
+                </h3>
+                {prospect.linkedinUrl && (
+                  <a
+                    href={prospect.linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-700 transition flex-shrink-0"
+                    aria-label="LinkedIn Profile"
+                  >
+                    <Linkedin className="w-3.5 h-3.5" />
+                  </a>
+                )}
+              </div>
               <p className="text-xs text-gray-600">
                 {prospect.jobTitle}
               </p>
@@ -224,13 +238,28 @@ export const QuickViewPanel: React.FC<QuickViewPanelProps> = ({
                     label="M"
                   />
                 )}
-                {prospect.linkedinUrl && (
-                  <ContactItem
-                    value="LinkedIn Profile"
-                    isLink={true}
-                    href={prospect.linkedinUrl}
-                  />
-                )}
+                {/* Social Links with Icons */}
+                <div className="flex gap-3 mt-2">
+                  {prospect.linkedinUrl && (
+                    <a
+                      href={prospect.linkedinUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:text-blue-700 transition"
+                      aria-label="LinkedIn Profile"
+                    >
+                      <Linkedin className="w-4 h-4" />
+                    </a>
+                  )}
+                  {/* Twitter Icon (placeholder - no URL yet) */}
+                  <a
+                    href="#"
+                    className="text-gray-400 hover:text-gray-500 transition cursor-not-allowed"
+                    aria-label="Twitter Profile"
+                  >
+                    <Twitter className="w-4 h-4" />
+                  </a>
+                </div>
               </div>
             </div>
 
